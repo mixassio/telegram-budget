@@ -31,17 +31,14 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
     } else {
         bot.sendMessage(userId, 'Вы не из нашей семьи, проваливайте!');
     }
-/*
+
     setInterval(() => {
-        for (let i = 0; i < notes.length; i++){
-            const curDate = new Date().getHours() + ':' + new Date().getMinutes();
-                if ( notes[i]['time'] == curDate ) {
-                    bot.sendMessage(notes[i]['uid'], 'Напоминаю, что вы должны: '+ notes[i]['text'] + ' сейчас.');
-                    notes.splice(i,1);
-                }
-            }
+        const currentTime = `${new Date().getHours()}:${new Date().getMinutes()}`;
+        if (currentTime === '21:45') {
+            bot.sendMessage(userId, 'congratilation');
+        }
     }, 1000);
-*/
+
 });
 
 /*
