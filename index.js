@@ -7,7 +7,7 @@ const bot = new TelegramBot(token, {polling: true});
 const IdMisha = 276986665;
 const IdTanya = 378986745;
 const dayLimit = 1000;
-let currentMisha = 0;
+let currentMisha = 1000;
 let currentTania = 0;
 
 bot.onText(/(.+) (\d+)/, function (msg, match) {
@@ -15,8 +15,8 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
     if (userId === IdMisha || userId === IdTanya) {
         const text = match[1];
         const cost = match[2];
-        
-        const messageTania = `Misha spended ${cost} \n His budget on today: ${currentMisha}`
+        currentMisha -= cost;
+        const messageTania = `Misha spended ${cost} on ${text} \n His budget on today: ${currentMisha}`
         // const messageMisha = `text: ${text} cost: ${cost}`
         bot.sendMessage(IdMisha, messageMisha);
         bot.sendMessage(IdTanya, messageTania);
