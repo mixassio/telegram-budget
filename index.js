@@ -28,7 +28,7 @@ bot.onText(/напомни (.+) в (.+)/, function (msg, match) {
             }
     }, 1000);
 });
-bot.onText(/расход (.+) (d+)/, function (msg, match) {
+bot.onText(/расход (.+) (\d+)/, function (msg, match) {
     const userId = msg.from.id;
     const text = match[1];
     const cost = match[2];
