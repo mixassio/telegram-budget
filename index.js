@@ -24,12 +24,24 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
         const cost = match[2];
         users[userId].current -= cost;
         const message = `${users[userId].name} потратил ${cost} на ${text} \n Остаток бюджета на сегодня: ${users[userId].current}`;
-        bot.sendMessage(userId, message);
-        bot.sendMessage(users[userId].otherUser, message);
-        
+        //bot.sendMessage(userId, message);
+        //bot.sendMessage(users[userId].otherUser, message);
+        bot.sendMessage(userId, `${new Date().getHours()}`)
+        bot.sendMessage(userId, `${new Date().getHours() === 18}`)
     } else {
         bot.sendMessage(userId, 'Вы не из нашей семьи, проваливайте!');
-    }    
+    }
+/*
+    setInterval(() => {
+        for (let i = 0; i < notes.length; i++){
+            const curDate = new Date().getHours() + ':' + new Date().getMinutes();
+                if ( notes[i]['time'] == curDate ) {
+                    bot.sendMessage(notes[i]['uid'], 'Напоминаю, что вы должны: '+ notes[i]['text'] + ' сейчас.');
+                    notes.splice(i,1);
+                }
+            }
+    }, 1000);
+*/
 });
 
 /*
