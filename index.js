@@ -3,25 +3,31 @@ import TelegramBot from 'node-telegram-bot-api';
 const token = '728024267:AAHSCrzaKxxncCrUfzrZnu67qtvjZDcp0EM';
 const bot = new TelegramBot(token, {polling: true});
 
-
-const IdMisha = 276986665;
-const IdTanya = 378986745;
 const dayLimit = 1000;
-let currentMisha = 1000;
-let currentTania = 0;
+const users = {
+    276986665: {
+        name: 'Миша',
+        current: dayLimit,
+        otherUser: 378986745,
+    },
+    378986745: {
+        name: 'Таня',
+        current: dayLimit,
+        otherUser: 276986665,
+    }
+}
 
 bot.onText(/(.+) (\d+)/, function (msg, match) {
     const userId = msg.from.id;
-    if (userId === IdMisha || userId === IdTanya) {
+    if (users(userId)) {
         const text = match[1];
         const cost = match[2];
-        currentMisha -= cost;
-        const messageMisha = `Misha spended ${cost} on ${text} \n His budget on today: ${currentMisha}`
-        // const messageTania = `text: ${text} cost: ${cost}`
-        bot.sendMessage(IdMisha, messageMisha);
-        // bot.sendMessage(IdTanya, messageTania);
+        users[userId].current -= cost;
+        const message = `${user[userId].name} потратил ${cost} на ${text} \n Остаток бюджета на сегодня: ${currentMisha}`
+        bot.sendMessage(userId, message);
+        bot.sendMessage(users[userId].otherUser, message);
     } else {
-        bot.sendMessage(userId, 'You are not our family. Get away!');
+        bot.sendMessage(userId, 'Вы не из нашей семьи, проваливайте!');
     }
     
     
