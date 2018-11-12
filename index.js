@@ -4,6 +4,8 @@ const token = '728024267:AAHSCrzaKxxncCrUfzrZnu67qtvjZDcp0EM';
 const bot = new TelegramBot(token, {polling: true});
 
 const notes = [];
+const IdMisha = 276986665;
+const IdTanya = 378986745;
 const dayLimit = 1000;
 let currentMisha = 0;
 let currentTania = 0;
@@ -25,4 +27,13 @@ bot.onText(/напомни (.+) в (.+)/, function (msg, match) {
                 }
             }
     }, 1000);
+});
+bot.onText(/расход (.+) (d+)/, function (msg, match) {
+    const userId = msg.from.id;
+    const text = match[1];
+    const cost = match[2];
+
+    const myMessage = `text: ${text} cost: ${cost}`
+    bot.sendMessage(userId, myMessage);
+    
 });
