@@ -4,7 +4,7 @@ const token = '728024267:AAHSCrzaKxxncCrUfzrZnu67qtvjZDcp0EM';
 const bot = new TelegramBot(token, {polling: true});
 
 const dayLimit = 1000;
-const users = {
+let users = {
     276986665: {
         name: 'Миша',
         current: dayLimit,
