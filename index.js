@@ -22,9 +22,9 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
     if (users(userId)) {
         const text = match[1];
         const cost = match[2];
+        bot.sendMessage(userId, `${text}, ${cost}`);
         users[userId].current -= cost;
         const message = `${users[userId].name} потратил ${cost} на ${text} \n Остаток бюджета на сегодня: ${users[userId].current}`;
-        console.log(message, userId, users[userId].otherUser)
         bot.sendMessage(userId, message);
         bot.sendMessage(users[userId].otherUser, message);
     } else {
