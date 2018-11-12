@@ -24,41 +24,20 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
         const cost = match[2];
         users[userId].current -= cost;
         const message = `${users[userId].name} потратил ${cost} на ${text} \n Остаток бюджета на сегодня: ${users[userId].current}`;
-        //bot.sendMessage(userId, message);
-        //bot.sendMessage(users[userId].otherUser, message);
-        bot.sendMessage(userId, `${new Date().getHours()}`)
-        bot.sendMessage(userId, `${new Date().getHours() === 18}`)
+        bot.sendMessage(userId, message);
+        bot.sendMessage(users[userId].otherUser, message);
     } else {
         bot.sendMessage(userId, 'Вы не из нашей семьи, проваливайте!');
     }
 
     setInterval(() => {
-        const currentTime = `${new Date().getHours()}:${new Date().getMinutes()}`;
-        if (currentTime === '18:45') {
-            bot.sendMessage(userId, 'congratilation');
+        if (new Date().getHours() === 4) {
+            users[276986665].current += dayLimit;
+            users[378986745].current += dayLimit;
+            const message = `Доброе утро, лимит увеличен на ${dayLimit} рублей.\n Бюджет на сегодня:\n ${users[276986665].name}: ${users[276986665].current} рублей.\n ${users[378986745].name}: ${users[378986745].current} рублей.`;
+            bot.sendMessage(276986665, message);
+            bot.sendMessage(378986745, message);
         }
-    }, 1000);
+    }, 3600000);
 
 });
-
-/*
-bot.onText(/напомни (.+) в (.+)/, function (msg, match) {
-    const userId = msg.from.id;
-    const text = match[1];
-    const time = match[2];
-
-    notes.push({ 'uid': userId, 'time': time, 'text': text });
-    const cuDate = new Date();
-    const myMessage = `User: ${userId} Отлично! Я обязательно напомню:)`
-    bot.sendMessage(userId, myMessage);
-    setInterval(function(){
-        for (let i = 0; i < notes.length; i++){
-            const curDate = new Date().getHours() + ':' + new Date().getMinutes();
-                if ( notes[i]['time'] == curDate ) {
-                    bot.sendMessage(notes[i]['uid'], 'Напоминаю, что вы должны: '+ notes[i]['text'] + ' сейчас.');
-                    notes.splice(i,1);
-                }
-            }
-    }, 1000);
-});
-*/
