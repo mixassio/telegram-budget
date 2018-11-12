@@ -34,7 +34,7 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
 
     setInterval(() => {
         const currentTime = `${new Date().getHours()}:${new Date().getMinutes()}`;
-        if (currentTime === '21:45') {
+        if (currentTime === '18:45') {
             bot.sendMessage(userId, 'congratilation');
         }
     }, 1000);
