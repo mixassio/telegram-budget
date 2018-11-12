@@ -19,23 +19,17 @@ let users = {
 
 bot.onText(/(.+) (\d+)/, function (msg, match) {
     const userId = msg.from.id;
-    const text = match[1];
-    const cost = match[2];
-    bot.sendMessage(userId, `${text}, ${cost}`);
-    
     if (users[userId]) {
-        bot.sendMessage(userId, `${text}, ${cost}`);
-    }
-    /*  users[userId].current -= cost;
+        const text = match[1];
+        const cost = match[2];
+        users[userId].current -= cost;
         const message = `${users[userId].name} потратил ${cost} на ${text} \n Остаток бюджета на сегодня: ${users[userId].current}`;
         bot.sendMessage(userId, message);
         bot.sendMessage(users[userId].otherUser, message);
         
     } else {
         bot.sendMessage(userId, 'Вы не из нашей семьи, проваливайте!');
-    }
-    */
-    
+    }    
 });
 
 /*
