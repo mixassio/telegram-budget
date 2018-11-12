@@ -16,10 +16,10 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
         const text = match[1];
         const cost = match[2];
         currentMisha -= cost;
-        const messageTania = `Misha spended ${cost} on ${text} \n His budget on today: ${currentMisha}`
-        // const messageMisha = `text: ${text} cost: ${cost}`
+        const messageMisha = `Misha spended ${cost} on ${text} \n His budget on today: ${currentMisha}`
+        // const messageTania = `text: ${text} cost: ${cost}`
         bot.sendMessage(IdMisha, messageMisha);
-        bot.sendMessage(IdTanya, messageTania);
+        // bot.sendMessage(IdTanya, messageTania);
     } else {
         bot.sendMessage(userId, 'You are not our family. Get away!');
     }
