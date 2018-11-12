@@ -10,8 +10,9 @@ bot.onText(/напомни (.+) в (.+)/, function (msg, match) {
     var time = match[2];
 
     notes.push({ 'uid': userId, 'time': time, 'text': text });
-
-    bot.sendMessage(userId, 'Отлично! Я обязательно напомню, если не сдохну :)');
+    var cuDate = new Date();
+    var myMessage = cuDate + ' Отлично! Я обязательно напомню, если не сдохну :)'
+    bot.sendMessage(userId, myMessage);
     setInterval(function(){
         for (var i = 0; i < notes.length; i++){
             var curDate = new Date().getHours() + ':' + new Date().getMinutes();
