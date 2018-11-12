@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "babel-node index.js",
+    "babel-node": "babel-node"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,14 @@
   "dependencies": {
     "node-telegram-bot-api": "^0.30.0",
     "telegraf": "^3.25.0",
-    "babel-node": "*"
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "@babel/register": "^7.0.0"
   }
 }
