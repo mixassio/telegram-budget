@@ -1,21 +1,21 @@
-var TelegramBot = require('node-telegram-bot-api');
+import TelegramBot from 'node-telegram-bot-api';
 
-var token = '728024267:AAHSCrzaKxxncCrUfzrZnu67qtvjZDcp0EM';
-var bot = new TelegramBot(token, {polling: true});
+const token = '728024267:AAHSCrzaKxxncCrUfzrZnu67qtvjZDcp0EM';
+const bot = new TelegramBot(token, {polling: true});
 
-var notes = [];
+const notes = [];
 bot.onText(/напомни (.+) в (.+)/, function (msg, match) {
-    var userId = msg.from.id;
-    var text = match[1];
-    var time = match[2];
+    const userId = msg.from.id;
+    const text = match[1];
+    const time = match[2];
 
     notes.push({ 'uid': userId, 'time': time, 'text': text });
-    var cuDate = new Date();
-    var myMessage = cuDate + ' Отлично! Я обязательно напомню, если не сдохну :)'
+    const cuDate = new Date();
+    const myMessage = cuDate + ' Отлично! Я обязательно напомню, если не сдохну :)'
     bot.sendMessage(userId, myMessage);
     setInterval(function(){
-        for (var i = 0; i < notes.length; i++){
-            var curDate = new Date().getHours() + ':' + new Date().getMinutes();
+        for (let i = 0; i < notes.length; i++){
+            const curDate = new Date().getHours() + ':' + new Date().getMinutes();
                 if ( notes[i]['time'] == curDate ) {
                     bot.sendMessage(notes[i]['uid'], 'Напоминаю, что вы должны: '+ notes[i]['text'] + ' сейчас.');
                     notes.splice(i,1);
