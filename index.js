@@ -1,3 +1,4 @@
+import fs from 'fs';
 import TelegramBot from 'node-telegram-bot-api';
 
 const token = '728024267:AAHSCrzaKxxncCrUfzrZnu67qtvjZDcp0EM';
