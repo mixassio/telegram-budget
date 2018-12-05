@@ -44,6 +44,6 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
             bot.sendMessage(276986665, message);
             bot.sendMessage(378986745, message);
         }
-    }, 3600000);
+    }, 60000);
 
 });
