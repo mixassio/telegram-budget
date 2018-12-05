@@ -7,7 +7,7 @@ var originalLog = console.log;
 
 console.log = function(str){
   originalLog(str);
-  fs.writeFileSync('data.txt', str, { flag: 'as'});
+  //fs.writeFileSync('data.txt', str, { flag: 'as'});
 }
 console.log('hello');
 const dayLimit = 1000;
