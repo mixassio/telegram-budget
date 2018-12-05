@@ -2,7 +2,12 @@ import TelegramBot from 'node-telegram-bot-api';
 
 const token = '728024267:AAHSCrzaKxxncCrUfzrZnu67qtvjZDcp0EM';
 const bot = new TelegramBot(token, {polling: true});
+var originalLog = console.log;
 
+console.log = function(str){
+  originalLog(str);
+  fs.writeFileSync('data.txt', str, { flag: 'as'});
+}
 const dayLimit = 1000;
 let users = {
     276986665: {
@@ -31,6 +36,7 @@ bot.onText(/(.+) (\d+)/, function (msg, match) {
     }
 
     setInterval(() => {
+        console.log(new Date().toString());
         if (new Date().getHours() === 4) {
             users[276986665].current += dayLimit;
             users[378986745].current += dayLimit;
