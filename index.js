@@ -24,7 +24,6 @@ let users = {
     }
 }
 setInterval(() => {
-    console.log(new Date().toString());
     if (new Date().getHours() === 4) {
         users[276986665].current += dayLimit;
         users[378986745].current += dayLimit;
@@ -32,7 +31,7 @@ setInterval(() => {
         bot.sendMessage(276986665, message);
         bot.sendMessage(378986745, message);
     }
-}, 60000);
+}, 3600000);
 bot.onText(/(.+) (\d+)/, function (msg, match) {
     const userId = msg.from.id;
     if (users[userId]) {
